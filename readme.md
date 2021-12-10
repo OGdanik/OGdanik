@@ -92,6 +92,7 @@ create database test, run test.sql
 
 ## Функция возврата практически всей БД
 
+```sql
 CREATE FUNCTION list_auto()
     returns table(id integer, vin_nomer character, id_mm integer, marka character, model character, num character, dtv date, 
 				  dts date,fio character, dtp date, dtvs date, avariya character, dtavar date)
