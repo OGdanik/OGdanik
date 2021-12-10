@@ -100,10 +100,10 @@ AS $$
 
 select v.id, v.vin_nomer, v.id_mm, m.marka, m.model, n.number, n.data_vidachi, n.data_snyatiya, vl.fio, vl.data_postanovki,
 		vl.data_snyatiya, a.avariya, a.data_avarii
-from auto v left join model_marka m on v.id_mm=m.id 
-inner join avarii a on a.id_auto_av=v.id
-inner join reestr_nomerov n on n.id_auto_rn=v.id
-inner join reestr_vladelcev vl on vl.id_auto_rv=v.id;
+from auto v inner join model_marka m on v.id_mm=m.id 
+left join avarii a on a.id_auto_av=v.id
+left join reestr_nomerov n on n.id_auto_rn=v.id
+left join reestr_vladelcev vl on vl.id_auto_rv=v.id;
 
 $$
 language 'sql';
