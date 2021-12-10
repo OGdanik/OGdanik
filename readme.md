@@ -89,3 +89,20 @@ login to phpmyadmin as: http://localhost/phpmyadmin
 login: root
 password: (none)
 create database test, run test.sql
+
+## Функция возврата практически всей БД
+
+CREATE FUNCTION list_auto()
+    returns table(id integer, vin_nomer character, id_mm integer, marka character, model character, num character, dtv date, 
+				  dts date,fio character, dtp date, dtvs date, avariya character, dtavar date)
+AS $$
+
+select v.id, v.vin_nomer, v.id_mm, m.marka, m.model, n.number, n.data_vidachi, n.data_snyatiya, vl.fio, vl.data_postanovki,
+		vl.data_snyatiya, a.avariya, a.data_avarii
+from auto v left join model_marka m on v.id_mm=m.id 
+inner join avarii a on a.id_auto_av=v.id
+inner join reestr_nomerov n on n.id_auto_rn=v.id
+inner join reestr_vladelcev vl on vl.id_auto_rv=v.id;
+
+$$
+language 'sql';
